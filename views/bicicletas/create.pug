@@ -1,0 +1,40 @@
+extends ../layout
+
+block content
+ a(href='/bicicletas') Volver
+
+ br
+ br
+ br
+
+ h1.text-center Nueva Bicicleta
+
+ br
+ br
+ .container
+  .row
+    .col-6.mx-auto
+      form(action='/bicicletas/create' method='post')
+        .input-group.mb-3
+          label.col-sm-2.col-form-label(for='id') ID:
+          .col-sm-6
+            input#id.form-control(type='text' name='id')
+        .input-group.mb-3
+          label.col-sm-2.col-form-label(for='color') Color
+          .col-sm-6
+            input#color.form-control(type='text' name='color')
+        .input-group.mb-3
+          label.col-sm-2.col-form-label(for='modelo') Modelo
+          .col-sm-6
+            input#modelo.form-control(type='text' name='modelo')
+        .input-group.mb-3
+          label.col-sm-2.col-form-label(for='lat') Latitud
+          .col-sm-6
+            input#lat.form-control(type='text' name='lat')
+        .input-group.mb-3
+          label.col-sm-2.col-form-label(for='lng') Longitud
+          .col-sm-6
+            input#lng.form-control(type='text' name='lng')
+        .input-group.mb-3
+          .col-sm-6
+            input.btn.btn-primary.btn-sm(type='submit' value='Agregar')
