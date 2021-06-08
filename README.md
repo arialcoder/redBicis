@@ -1,0 +1,3 @@
+# redBicis
+Instalacion:
+npm install
