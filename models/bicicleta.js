@@ -41,10 +41,10 @@ Bicicleta.removeById = function(unaBiciId){
     }
 }
 
-let a = new Bicicleta(1,'rojo', 'urbana',[51.504201, -0.082483]);
-let b = new Bicicleta(2,'blanca', 'urbana',[51.50332, -0.082998]);
+// let a = new Bicicleta(1,'rojo', 'urbana',[51.504201, -0.082483]);
+// let b = new Bicicleta(2,'blanca', 'urbana',[51.50332, -0.082998]);
 
-Bicicleta.add(a);
-Bicicleta.add(b);
+// Bicicleta.add(a);
+// Bicicleta.add(b);
 
 module.exports = Bicicleta;
