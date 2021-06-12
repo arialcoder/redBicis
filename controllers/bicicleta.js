@@ -1,7 +1,8 @@
 var Bicicleta = require('../models/bicicleta');
 
 
-//bicis:Bicicleta.allbicis, bicis es un objeto que referencia a la lista de bicicletas, en el layout index.pug se lo llama para listar con una tabla las bicicletas en la ruta bicicletas/index.pug
+/*bicis:Bicicleta.allbicis, bicis es un objeto que referencia a la lista de bicicletas,
+ en el layout index.pug se lo llama para listar con una tabla las bicicletas en la ruta bicicletas/index.pug */
 exports.bicicleta_list = function(req,res){
     res.render('bicicletas/index',{bicis: Bicicleta.allBicis});
 }

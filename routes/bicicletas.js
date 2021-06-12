@@ -1,9 +1,7 @@
-//traemos el modulo de ruta de express
+const express = require('express');
+const router = express.Router();
 
-var express = require('express');
-var router = express.Router();
-
-var bicicletaController = require('../controllers/bicicleta');
+const bicicletaController = require('../controllers/bicicleta');
 
 router.get('/', bicicletaController.bicicleta_list);
 router.get('/create', bicicletaController.bicicleta_create_get);
