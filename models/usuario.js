@@ -1,13 +1,13 @@
-const mongoose = require('mongoose');
-const Reserva = require('./reserva');
-const Schema = mongoose.Schema;
+var mongoose = require('mongoose');
+var Reserva = require('./reserva');
+var Schema = mongoose.Schema;
 
-let usuarioSchema= new Schema({
+var usuarioSchema = new Schema({
   nombre: String,
   });
 
 usuarioSchema.methods.reservar = function(biciId, desde, hasta, cb){
-  let reserva = new Reserva({usuario: this._id, bicicleta: biciId, desde: desde, hasta: hasta})
+  var reserva = new Reserva({usuario: this._id, bicicleta: biciId, desde: desde, hasta: hasta})
   console.log(reserva);
   reserva.save(cb);
 }

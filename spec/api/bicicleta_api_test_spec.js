@@ -15,8 +15,7 @@ describe ('Bicicleta API', () => {
 
     beforeAll(function(done) {
 
-        mongoose.disconnect();
-
+        
          var mongoDB = 'mongodb://localhost/testdb';
         mongoose.connect(mongoDB, { useNewUrlParser: true });
         
@@ -35,9 +34,7 @@ describe ('Bicicleta API', () => {
             if (err) console.log(err);
             done();
         });  
-    });
-
-    
+    });   
     
 
     describe ("GET BICICLETAS /", () => {
@@ -71,9 +68,7 @@ describe ('Bicicleta API', () => {
         });
     });
 
-// Hasta aca
-
-describe ('POST BICICLETAS /delete', () => {
+ describe ('POST BICICLETAS /delete', () => {
     it('Status 204', (done) => {
         var headers = {'content-type' : 'application/json'};
         var a = new Bicicleta({code: 10, color: 'rojo', modelo: 'urbana', ubicacion: [-34, -54]});

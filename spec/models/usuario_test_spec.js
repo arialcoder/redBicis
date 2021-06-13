@@ -5,6 +5,9 @@ const Reserva = require('../../models/reserva');
 
 describe('Testing Usuarios', function() {
 
+    beforeAll(function(done){
+        mongoose.connection.close(done)});
+
     beforeEach(function(done) {
         var mongoDB = 'mongodb://localhost/testdb';
         mongoose.connect( mongoDB,{ useNewUrlParser: true, useUnifiedTopology: true } );
@@ -27,7 +30,7 @@ describe('Testing Usuarios', function() {
                     done();
                 });
             });
-        });
+        });       
     });
 
     describe('Cuando un Usuario reserva una bici',() => {
