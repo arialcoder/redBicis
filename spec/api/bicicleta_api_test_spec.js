@@ -12,11 +12,9 @@ describe ('Bicicleta API', () => {
         await mongoose.disconnect();
     });
 
-<<<<<<< HEAD
     beforeEach(function(done){
         var mongoDB = 'mongodb://localhost/testdb';
         mongoose.connect(mongoDB,{useNewUrlParser: true })
-=======
 
     beforeAll(function(done){
         mongoose.connection.close(done)});
@@ -27,7 +25,6 @@ describe ('Bicicleta API', () => {
          var mongoDB = 'mongodb://localhost/testdb';
         mongoose.connect(mongoDB, { useNewUrlParser: true });
         
->>>>>>> b7678b4bfdaa6a06f9e182c818ea2622bb4dc117
         const db = mongoose.connection;
         db.on('error', console.error.bind(console,'connection error'));
         db.once('open',function(){
@@ -41,21 +38,11 @@ describe ('Bicicleta API', () => {
             if (err) console.log(err);
             mongoose.disconnect(err); 
             done();
-<<<<<<< HEAD
-<<<<<<< HEAD
+
         });
     });
-=======
-        });  
-    });   
->>>>>>> b7678b4bfdaa6a06f9e182c818ea2622bb4dc117
-=======
-        });  
-    });   
->>>>>>> b7678b4bfdaa6a06f9e182c818ea2622bb4dc117
-    
 
-    describe ("GET BICICLETAS /", () => {
+      describe ("GET BICICLETAS /", () => {
         it('Status 200', (done) => {
             request.get(base_url, function(error, response, body){
                 var result = JSON.parse(body);
@@ -66,9 +53,6 @@ describe ('Bicicleta API', () => {
         });
     });
 
-<<<<<<< HEAD
-    
-=======
     describe ('POST BICICLETAS /create', () => {
         it('Status 200', (done) => {
             var headers = {'content-type' : 'application/json'};
@@ -88,7 +72,6 @@ describe ('Bicicleta API', () => {
             });
         });
     });
->>>>>>> b7678b4bfdaa6a06f9e182c818ea2622bb4dc117
 
  describe ('POST BICICLETAS /delete', () => {
     it('Status 204', (done) => {
