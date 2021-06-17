@@ -6,6 +6,7 @@ const Bicicleta = require('../../models/bicicleta');
 describe ('Testing Bicicletas', function() {
 
     beforeEach(function(done) {
+        mongoose.disconnect();
         var mongoDB = 'mongodb://localhost/testdb';
         mongoose.connect(mongoDB, { useNewUrlParser: true , useUnifiedTopology:true});
         
@@ -21,7 +22,7 @@ describe ('Testing Bicicletas', function() {
     afterEach(function(done) {
         Bicicleta.deleteMany({}, function(err, success){
             if (err) console.log(err);
-             mongoose.disconnect(err);
+            // mongoose.disconnect(err);
             done();
         });
     });

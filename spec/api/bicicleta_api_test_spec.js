@@ -8,36 +8,28 @@ var Bicicleta = require('../../models/bicicleta');
 var base_url = "http://localhost:3000/api/bicicletas";
 
 describe ('Bicicleta API', () => {
+    beforeAll(async ()=>{
+        await mongoose.disconnect();
+    });
 
-
-    beforeAll(function(done){
-        mongoose.connection.close(done)});
-
-    beforeAll(function(done) {
-
-        mongoose.disconnect();
-
-         var mongoDB = 'mongodb://localhost/testdb';
-        mongoose.connect(mongoDB, { useNewUrlParser: true });
-        
+    beforeEach(function(done){
+        var mongoDB = 'mongodb://localhost/testdb';
+        mongoose.connect(mongoDB,{useNewUrlParser: true })
         const db = mongoose.connection;
-        db.on('error', console.error.bind(console, 'connection error'));
-        db.once('open', function() {
-            console.log('we are connected to test database!');
+        db.on('error', console.error.bind(console,'connection error'));
+        db.once('open',function(){
+            console.log('we are connected to test database');
+            done();
+        });    
+    });
+
+    afterEach(function(done){
+        Bicicleta.deleteMany({},function( err, success){
+            if (err) console.log(err);
+            mongoose.disconnect(err); 
             done();
         });
-
-
     });
-
-    afterEach(function(done) {
-        Bicicleta.deleteMany({}, function(err, success){
-            if (err) console.log(err);
-            done();
-        });  
-    });
-
-    
     
 
     describe ("GET BICICLETAS /", () => {
@@ -51,25 +43,7 @@ describe ('Bicicleta API', () => {
         });
     });
 
-    describe ('POST BICICLETAS /create', () => {
-        it('Status 200', (done) => {
-            var headers = {'content-type' : 'application/json'};
-            var aBici = { "code": 10, "color": "rojo", "modelo": "urbana", "lat":-34, "lng": -54};
-            request.post({
-                headers: headers,
-                url: base_url + '/create',
-                body: aBici
-            }, function(error, response, body) {
-                expect(response.statusCode).toBe(200);
-                var bici = JSON.parse(body).bicicleta;
-                console.log(bici);
-                expect(bici.color).toBe("rojo");
-                expect(bici.ubicacion[0]).toBe(-34);
-                expect(bici.ubicacion[1]).toBe(-54);
-                done();
-            });
-        });
-    });
+    
 
 // Hasta aca
 
@@ -96,30 +70,6 @@ describe ('POST BICICLETAS /delete', () => {
     });
 });
 
-describe ('POST BICICLETAS /update', () => {
-    it('Status 200', (done) => {
-        var headers = {'content-type' : 'application/json'};
-        var a = new Bicicleta({code: 10, color: 'rojo', modelo: 'urbana', ubicacion: [-34, -54]});
-        Bicicleta.add (a, function() {
-            var headers = {'content-type' : 'application/json'};
-            var updatedBici = { "id": a.code, "color": "verde", "modelo": "montaña", "lat":-33, "lng": -55};
-            request.post({
-                headers: headers,
-                url: base_url + '/update',
-                body: JSON.stringify(updatedBici)
-            }, function(error, response, body) {
-                expect(response.statusCode).toBe(200);
-                var foundBici = Bicicleta.findByCode(10, function(err, doc) {
-                    expect(doc.code).toBe(10);
-                    expect(doc.color).toBe(updatedBici.color);
-                    expect(doc.modelo).toBe(updatedBici.modelo);
-                    expect(doc.ubicacion[0]).toBe(updatedBici.lat);
-                    expect(doc.ubicacion[1]).toBe(updatedBici.lng);
-                    done();
-                });
-            });
-        });
-    });
-});
+
     
 });
