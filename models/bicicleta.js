@@ -46,6 +46,11 @@ bicicletaSchema.statics.removeByCode = function(aCode, cb){
     return this.deleteOne({code: aCode}, cb);
 };
 
+//updateByCode
+bicicletaSchema.statics.updateByCode = function (aBici, cb) {
+	console.log("Estoy en el model:" + aBici.toString());
+	this.updateOne(	{ code: aBici.code }, { modelo: aBici.modelo, color: aBici.color, ubicacion: aBici.ubicacion, }, cb);
+};
+
 
 module.exports = mongoose.model('Bicicleta', bicicletaSchema);
-

@@ -97,6 +97,7 @@ describe ('Testing Bicicletas', function() {
 
 
 });
+
 /*
 exports.bicicleta_list = function(req,res){
     res.status(200).json({

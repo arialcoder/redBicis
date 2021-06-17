@@ -3,7 +3,7 @@ var Bicicleta = require('../models/bicicleta');
 
 /*bicis:Bicicleta.allbicis, bicis es un objeto que referencia a la lista de bicicletas,
  en el layout index.pug se lo llama para listar con una tabla las bicicletas en la ruta bicicletas/index.pug */
-exports.bicicleta_list = function(req,res){
+exports.bicicleta_list = function(req,res){ console.log( Bicicleta.allBicis);
     res.render('bicicletas/index',{bicis: Bicicleta.allBicis});
 }
 
@@ -12,7 +12,7 @@ exports.bicicleta_create_get = function(req,res){
 }
 
 exports.bicicleta_create_post = function(req,res){
-   var bici = new Bicicleta(req.body.id, req.body.color, req.body.modelo);
+   var bici = new Bicicleta({ code: req.body.code, color: req.body.color, modelo: req.body.modelo });
    bici.ubicacion = [req.body.lat, req.body.lng];
    Bicicleta.add(bici);
 
@@ -37,7 +37,7 @@ exports.bicicleta_update_post = function(req,res){
 }
 
 exports.bicicleta_delete_post = function(req,res){
-    Bicicleta.removeById(req.body.id);
-
-    res.redirect('/bicicletas');
+    Bicicleta.removeById(req.body.id, (err, raw) =>{
+        res.redirect('/bicicletas');
+    });   
 }
