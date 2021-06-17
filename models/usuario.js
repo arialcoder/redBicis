@@ -1,5 +1,3 @@
-<<<<<<< HEAD
-<<<<<<< HEAD
 const mongoose = require('mongoose');
 const uniqueValidator = require('mongoose-unique-validator');
 const Reserva = require('./reserva');
@@ -15,15 +13,12 @@ const validateEmail = function(email) {
   return re.test(email);
 }
 
-let usuarioSchema= new Schema({
- 
- 
+let usuarioSchema= new Schema({ 
   nombre: {
     type: String,
     trin: true,
     required: [true, 'El nombre es obligatorio']
-  },
-  
+  },  
   email: {
     type: String,
     trin: true,
@@ -43,21 +38,7 @@ let usuarioSchema= new Schema({
     type: Boolean,
     default: false,
   }
-=======
-var mongoose = require('mongoose');
-var Reserva = require('./reserva');
-var Schema = mongoose.Schema;
-
-=======
-var mongoose = require('mongoose');
-var Reserva = require('./reserva');
-var Schema = mongoose.Schema;
-
->>>>>>> b7678b4bfdaa6a06f9e182c818ea2622bb4dc117
-var usuarioSchema = new Schema({
-  nombre: String,
->>>>>>> b7678b4bfdaa6a06f9e182c818ea2622bb4dc117
-  });
+});
 
 usuarioSchema.methods.reservar = function(biciId, desde, hasta, cb){
   var reserva = new Reserva({usuario: this._id, bicicleta: biciId, desde: desde, hasta: hasta})
