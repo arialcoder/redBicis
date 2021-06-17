@@ -1,4 +1,5 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 const mongoose = require('mongoose');
 const uniqueValidator = require('mongoose-unique-validator');
 const Reserva = require('./reserva');
@@ -47,6 +48,12 @@ var mongoose = require('mongoose');
 var Reserva = require('./reserva');
 var Schema = mongoose.Schema;
 
+=======
+var mongoose = require('mongoose');
+var Reserva = require('./reserva');
+var Schema = mongoose.Schema;
+
+>>>>>>> b7678b4bfdaa6a06f9e182c818ea2622bb4dc117
 var usuarioSchema = new Schema({
   nombre: String,
 >>>>>>> b7678b4bfdaa6a06f9e182c818ea2622bb4dc117

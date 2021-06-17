@@ -42,8 +42,13 @@ describe ('Bicicleta API', () => {
             mongoose.disconnect(err); 
             done();
 <<<<<<< HEAD
+<<<<<<< HEAD
         });
     });
+=======
+        });  
+    });   
+>>>>>>> b7678b4bfdaa6a06f9e182c818ea2622bb4dc117
 =======
         });  
     });   
@@ -61,7 +66,29 @@ describe ('Bicicleta API', () => {
         });
     });
 
+<<<<<<< HEAD
     
+=======
+    describe ('POST BICICLETAS /create', () => {
+        it('Status 200', (done) => {
+            var headers = {'content-type' : 'application/json'};
+            var aBici = { "code": 10, "color": "rojo", "modelo": "urbana", "lat":-34, "lng": -54};
+            request.post({
+                headers: headers,
+                url: base_url + '/create',
+                body: aBici
+            }, function(error, response, body) {
+                expect(response.statusCode).toBe(200);
+                var bici = JSON.parse(body).bicicleta;
+                console.log(bici);
+                expect(bici.color).toBe("rojo");
+                expect(bici.ubicacion[0]).toBe(-34);
+                expect(bici.ubicacion[1]).toBe(-54);
+                done();
+            });
+        });
+    });
+>>>>>>> b7678b4bfdaa6a06f9e182c818ea2622bb4dc117
 
  describe ('POST BICICLETAS /delete', () => {
     it('Status 204', (done) => {
