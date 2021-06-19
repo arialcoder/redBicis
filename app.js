@@ -132,6 +132,8 @@ app.use('/api/usuarios', usuariosAPIRouter);
 app.use('/usuarios', usuariosRouter);
 //token
 app.use('/token', tokenRouter);
+//si el usuario esta logueado
+app.use('/bicicletas', loggedIn, bicicletasRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
