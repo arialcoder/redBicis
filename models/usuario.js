@@ -51,11 +51,11 @@ usuarioSchema.pre('save', function(next){
     this.password = bcrypt.hashSync(this.password, saltRounds);
   }
   next();
-})
+});
     // unique validator es un Plugin de mongoose
 usuarioSchema.methods.validPassword = function(password) {
   return bcrypt.compareSync(password, this.password);
-}
+};
 
 
 usuarioSchema.methods.reservar = function (biciId, desde, hasta, cb) {
