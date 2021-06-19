@@ -4,6 +4,8 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 
+const jwt = require('jsonwebtoken');
+
 //MONGOOSE
 var mongoose = require('mongoose');
 var mongoDB = 'mongodb://localhost/red_bicicletas';
@@ -14,7 +16,11 @@ var db = mongoose.connection;
 db.on('error', console.error.bind(console, 'MongoDB connection error: '));
 
 var indexRouter = require('./routes/index');
-var usersRouter = require('./routes/users');
+//usuarios
+var usuariosRouter = require('./routes/usuarios');
+//token
+var tokenRouter = require('./routes/token');
+//var usersRouter = require('./routes/users');
 var bicicletasRouter = require('./routes/bicicletas');
 var bicicletasAPIRouter = require('./routes/api/bicicletas');
 var usuariosAPIRouter = require('./routes/api/usuarios')
@@ -32,10 +38,16 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
-app.use('/users', usersRouter);
+//app.use('/users', usersRouter);
+
 app.use('/bicicletas', bicicletasRouter);
 app.use('/api/bicicletas', bicicletasAPIRouter);
 app.use('/api/usuarios', usuariosAPIRouter);
+
+//usuarios
+app.use('/usuarios', usuariosRouter);
+//token
+app.use('/token', tokenRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
