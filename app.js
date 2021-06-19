@@ -30,11 +30,14 @@ var tokenRouter = require('./routes/token');
 var bicicletasRouter = require('./routes/bicicletas');
 var bicicletasAPIRouter = require('./routes/api/bicicletas');
 var usuariosAPIRouter = require('./routes/api/usuarios')
-
+const authAPIRouter = require('./routes/api/auth');
 //Guardar la session en memoria
 const store = new session.MemoryStore;
 
 var app = express();
+
+app.set('secretKey','jwt_pwd_!1223344');
+
 app.use(session({
   cookie: { maxAge: 240 * 60 *60 * 1000 },
   store: store,
@@ -125,7 +128,7 @@ app.use('/', indexRouter);
 //app.use('/users', usersRouter);
 
 app.use('/bicicletas', bicicletasRouter);
-app.use('/api/bicicletas', bicicletasAPIRouter);
+app.use('/api/bicicletas', validarUsuario, bicicletasAPIRouter);
 app.use('/api/usuarios', usuariosAPIRouter);
 
 //usuarios
@@ -134,6 +137,8 @@ app.use('/usuarios', usuariosRouter);
 app.use('/token', tokenRouter);
 //si el usuario esta logueado
 app.use('/bicicletas', loggedIn, bicicletasRouter);
+
+app.use('/api/auth', authAPIRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
@@ -152,8 +157,7 @@ app.use(function(err, req, res, next) {
 });
 
 
-
-//funcion para saber si es logged
+//funcion para saber si esta logged
 function loggedIn(req, res, next) {
   if (req.user){
     next();
