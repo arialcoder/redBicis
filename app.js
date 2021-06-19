@@ -5,7 +5,10 @@ var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 
 const jwt = require('jsonwebtoken');
-
+//add passport
+const passport = require('./config/passport');
+//crear objeto session
+const session = require('express-session')
 //MONGOOSE
 var mongoose = require('mongoose');
 var mongoDB = 'mongodb://localhost/red_bicicletas';
@@ -25,7 +28,17 @@ var bicicletasRouter = require('./routes/bicicletas');
 var bicicletasAPIRouter = require('./routes/api/bicicletas');
 var usuariosAPIRouter = require('./routes/api/usuarios')
 
+//Guardar la session en memoria
+const store = new session.MemoryStore;
+
 var app = express();
+app.use(session({
+  cookie: { maxAge: 240 * 60 *60 * 1000 },
+  store: store,
+  saveUninitialized: true,
+  resave: 'true',
+  secret: 'red_bicis_!!!***'
+}));
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -35,6 +48,10 @@ app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
+//inicializar passport despues de cookieParser
+app.use(passport.initialize())
+app.use(passport.session())
+
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
