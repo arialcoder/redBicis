@@ -20,7 +20,7 @@ var mongoose = require('mongoose');
 //si estoy en el ambiente de desaroollo usar
 //var mongoDB = 'mongodb://localhost/red_bicicletas';
 // sino usar mongodb+srv
-var mongoDB =proccess.env.MONGO_URI;
+var mongoDB = process.env.MONGO_URI;
 
 mongoose.connect(mongoDB, { useNewUrlParser: true, useUnifiedTopology: true });
 mongoose.Promise = global.Promise;
