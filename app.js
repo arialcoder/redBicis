@@ -1,3 +1,4 @@
+require('dotenv').config();
 var createError = require('http-errors');
 var express = require('express');
 var path = require('path');
@@ -14,7 +15,12 @@ const passport = require('./config/passport');
 const session = require('express-session')
 //MONGOOSE
 var mongoose = require('mongoose');
-var mongoDB = 'mongodb://localhost/red_bicicletas';
+
+
+//si estoy en el ambiente de desaroollo usar
+//var mongoDB = 'mongodb://localhost/red_bicicletas';
+// sino usar mongodb+srv
+var mongoDB =proccess.env.MONGO_URI;
 
 mongoose.connect(mongoDB, { useNewUrlParser: true, useUnifiedTopology: true });
 mongoose.Promise = global.Promise;

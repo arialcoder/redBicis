@@ -1,7 +1,8 @@
 extends ../layout
 
 block content
-  a(href='/bicicletas') Volver
+ div.container.mt-5
+  a.btn.btn-success(href='/bicicletas') Volver
 
   br
   br
@@ -12,10 +13,10 @@ block content
    .container
     .row
      .col-6.mx-auto
-      form(action=`/bicicletas/update/${bici.id}` method='post')
+      form(action=`/bicicleta/update/${bici.id}` method='post')
       .input-group.mb-3
         label.col-sm-2.col-form-label(for='code') ID:
-        input#id.form-control(type='text' name='code' value=bici.code )
+        input#id.form-control(type='text' name='code' value=bici.id disabled)
       .input-group.mb-3
         label.col-sm-2.col-form-label(for='color') Color:
         input#color.form-control(type='text' name='color' value=bici.color)

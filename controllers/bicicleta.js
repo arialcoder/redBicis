@@ -29,14 +29,27 @@ exports.bicicleta_update_get = function(req,res){
 }
 
 exports.bicicleta_update_post = function(req,res){
-   var bici = Bicicleta.findById(req.params.id);
-   bici.code = req.body.id;
-   bici.color = req.body.color;
-   bici.modelo = req.body.modelo;
-   bici.ubicacion = [req.body.lat, req.body.lng];
-   
-   res.redirect('/bicicletas');
-}
+    var update_values = { 
+        color : req.body.color,
+        modelo: req.body.modelo,
+        ubicacion : [req.body.lat, req.body.lng]
+    };
+    Bicicleta.findByIdAndUpdate(req.params.id, update_values,
+      (err, bicicleta) => {
+      //if there is a error we render the View with a error
+      if (err) {
+        console.log(err);
+        res.render('bicicletas/update', {
+          errors: err.errors,
+          bicicleta
+        })
+      } else {
+        //If everthing is Ok we render to bicicletas
+        res.redirect('/bicicletas');
+        return;
+      }
+    })
+  }
 
 exports.bicicleta_delete_post = function(req,res){
     Bicicleta.removeById(req.body.id, (err, raw) =>{
