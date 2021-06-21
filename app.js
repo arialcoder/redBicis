@@ -8,6 +8,14 @@ var logger = require('morgan');
 const Usuario = require('./models/usuario');
 const Token = require('./models/token');
 
+//crear objeto session
+const session = require('express-session')
+
+const MongoDBStore = require('connect-mongodb-session')(session);
+
+//Guardar la session en memoria
+//const store = new session.MemoryStore;
+
 let store;
 if(process.env.NODE_ENV === 'development' ) {
    store = new session.MemoryStore
@@ -26,10 +34,7 @@ if(process.env.NODE_ENV === 'development' ) {
 const jwt = require('jsonwebtoken');
 //add passport
 const passport = require('./config/passport');
-//crear objeto session
-const session = require('express-session')
 
-const MongoDBStore = require('connect-mongodb-session')(session);
 //MONGOOSE
 var mongoose = require('mongoose');
 
@@ -54,8 +59,7 @@ var bicicletasRouter = require('./routes/bicicletas');
 var bicicletasAPIRouter = require('./routes/api/bicicletas');
 var usuariosAPIRouter = require('./routes/api/usuarios')
 const authAPIRouter = require('./routes/api/auth');
-//Guardar la session en memoria
-//const store = new session.MemoryStore;
+
 
 var app = express();
 
