@@ -162,7 +162,7 @@ passport.authenticate('google', { scope:
 
 app.get( '/auth/google/callback', 
   passport.authenticate( 'google', { 
-      successRedirect: '/auth/google/success',
+      successRedirect: '/bicicletas',
       failureRedirect: '/auth/google/failure'
 }));
 
