@@ -151,6 +151,21 @@ app.post('/resetPassword', function(req, res){
   });
 });
 
+//Google Oauth20
+app.get('/auth/google',
+passport.authenticate('google', { scope: 
+    [ 'https://www.googleapis.com/auth/plus.login',
+      'https://www.googleapis.com/auth/plus.profile.emails.read',
+      'email',
+    , 'profile' ] }
+));
+
+app.get( '/auth/google/callback', 
+  passport.authenticate( 'google', { 
+      successRedirect: '/auth/google/success',
+      failureRedirect: '/auth/google/failure'
+}));
+
 app.use('/', indexRouter);
 //app.use('/users', usersRouter);
 
@@ -175,18 +190,7 @@ app.use('/googlecb86b6679f18f9cc', function(req, res){
   res.sendFile('googlecb86b6679f18f9cc.html');
  });
 
- //Google Oauth20
- app.get('/auth/google',
- passport.authenticate('google', { scope: 
-     [ 'email',
-     , 'profile' ] }
-));
 
-app.get( '/auth/google/callback', 
-   passport.authenticate( 'google', { 
-       successRedirect: '/auth/google/success',
-       failureRedirect: '/auth/google/failure'
-}));
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
