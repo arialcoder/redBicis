@@ -71,19 +71,23 @@ usuarioSchema.methods.reservar = function (biciId, desde, hasta, cb) {
 
 
 usuarioSchema.methods.enviar_email_bienvenida = function(cb) {
+    //crea un token
     const token = new Token({_userId: this.id, token: crypto.randomBytes(16).toString('hex')})
     const email_destination = this.email;
     token.save((err) => {
       if ( err ) { return console.log(err.message)}
       const mailOptions = {
-        from: 'no-reply@redbicicletas.com',
+        from: 'shanel.rempel@ethereal.email',
         to: email_destination,
         subject: 'Verificacion de cuenta',
         text: 'Hola,\n\n' 
         + 'Por favor, para verificar su cuenta haga click en este link: \n' 
-        + 'http://localhost:3000'
-        + '\/token/confirmation\/' + token.token + '\n'
-      }
+        + process.env.HOST
+        + '\/token/confirmation\/' + token.token + '\n',
+        html: 'Hola,<br><br>' + 'Por favor, para verificar su cuenta haga click en este link:<br><br>' +
+                  '<a href="' + process.env.HOST + '\/token/confirmation\/' + token.token + 
+                  '" target="_blank">Activar Usuario</a>.<br>'
+      };
   
       mailer.sendMail(mailOptions, function(err){
         if( err ) { return console.log(err.message) } 
