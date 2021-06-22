@@ -1,10 +1,10 @@
 const express = require('express');
 const router = express.Router();
 const passport = require('../../config/passport')
-const authControllerApi = require('../../controllers/api/authControllerAPI');
+const authController = require('../../controllers/api/authControllerAPI');
 
-router.post('/authenticate', authControllerApi.authenticate);
-router.post('/forgotPassword', authControllerApi.forgotPassword);
-router.post('/facebook_token', passport.authenticate('facebook-token'), authControllerApi.authFacebookToken);
+router.post('/authenticate', authController.authenticate);
+router.post('/forgotPassword', authController.forgotPassword);
+router.post('/facebook_token', passport.authenticate('facebook-token'), authController.authFacebookToken);
 
 module.exports = router;

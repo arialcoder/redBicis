@@ -35,6 +35,8 @@ const jwt = require('jsonwebtoken');
 //add passport
 const passport = require('./config/passport');
 
+
+
 //MONGOOSE
 var mongoose = require('mongoose');
 
@@ -160,11 +162,18 @@ passport.authenticate('google', { scope:
     , 'profile' ] }
 ));
 
-app.get( '/auth/google/callback', 
+app.get('/auth/google/callback', 
   passport.authenticate( 'google', { 
       successRedirect: '/bicicletas',
       failureRedirect: '/auth/google/failure'
 }));
+
+app.get('/callback', 
+  passport.authenticate( 'facebook', { 
+      successRedirect: '/bicicletas',
+      failureRedirect: 'login'
+}));
+
 
 app.use('/', indexRouter);
 //app.use('/users', usersRouter);
@@ -190,6 +199,7 @@ app.use('/googlecb86b6679f18f9cc', function(req, res){
   res.sendFile('googlecb86b6679f18f9cc.html');
  });
 
+ 
 
 
 // catch 404 and forward to error handler

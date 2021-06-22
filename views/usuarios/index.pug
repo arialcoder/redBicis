@@ -1,6 +1,9 @@
 extends ../layout
 
 block content
+ div.container
+  a.btn.btn-light(href='/') Volver
+
  div.container.mt-5
   a.btn.btn-info(href='/usuarios/create' role="button") Nuevo Usuario
 
@@ -25,7 +28,7 @@ block content
           td= usuario.email
           td= usuario.verificado ? 'SI' : 'NO'
           td
-            a.btn(href= 'usuarios/' + usuario.id + '/update') Editar
+            a.btn.btn-outline-primary(href= 'usuarios/' + usuario.id + '/update') Editar
           td
             form.inline(method='post' action='usuarios/' + usuario.id + '/delete')
                 input(type='hidden' name='id' value= usuario.id)

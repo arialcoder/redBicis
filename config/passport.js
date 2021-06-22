@@ -3,7 +3,7 @@ const LocalStrategy = require('passport-local').Strategy;
 const Usuario = require('../models/usuario');
 const GoogleStrategy = require('passport-google-oauth20').Strategy
 const FacebookTokenStrategy = require('passport-facebook-token');
-const FacebookStrategy = require('passport-facebook').Strategy;
+//const FacebookStrategy = require('passport-facebook').Strategy;
 
 passport.use(new LocalStrategy(   
   function (email, password, done) {
@@ -48,6 +48,7 @@ passport.use(new FacebookTokenStrategy({
   fbGraphVersion: 'v3.0'
 }, function (accessToken, refreshToken, profile, done) {
   console.log("FaceToken--profile", profile);
+  //callback
   Usuario.findOneOrCreateByFacebook(profile, function (err, user) {
     if (err) {
       return done(err);
@@ -56,24 +57,7 @@ passport.use(new FacebookTokenStrategy({
   });
 }));
 
-passport.use(new FacebookStrategy({
-  clientID: process.env.FACEBOOK_ID,
-  clientSecret: process.env.FACEBOOK_SECRET,
-  callbackURL: process.env.HOST + "/auth/facebook/callback",
-  profileFields: ["emails","name","displayName",]
-},
-function (accessToken, refreshToken, profile, done) {
-  console.log("Face--profile", profile);
-  Usuario.findOneOrCreateByFacebook(profile, function (err, user) {
-    console.log("profile", profile)
-    console.log("user", user)
-    if (err) {
-      return done(err);
-    }
-    done(null, user);
-  });
-}
-));
+
 
 passport.serializeUser(function(user, cb){
   cb(null, user.id);

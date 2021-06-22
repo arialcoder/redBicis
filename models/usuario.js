@@ -191,4 +191,5 @@ usuarioSchema.statics.findOneOrCreateByFacebook = function findOneOrCreate(condi
 
 
 
+
 module.exports = mongoose.model('Usuario', usuarioSchema)

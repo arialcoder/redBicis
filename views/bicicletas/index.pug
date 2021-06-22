@@ -1,9 +1,11 @@
 extends ../layout
 
 block content
-   div.container.mt-5
-    a.btn.btn-success(href="/bicicletas/create") Nueva Bicicleta
+ div.container
+  a.btn.btn-light(href='/') Volver
 
+ div.container.mt-5   
+    a.btn.btn-success(href='/bicicletas/create' role="button") Nueva Bicicleta
     table.table.mt-5
       thead
         tr
@@ -22,7 +24,7 @@ block content
             td= bici.modelo
             td= bici.ubicacion
             td
-              a(href="bicicletas/" + bici.id +"/update" class="btn btn-primary") editar
+              a(href="bicicletas/" + bici.id +"/update" class="btn btn-outline-success") editar
             td
               form.inline(method="post" action="bicicletas/"+ bici.id + "/delete")
                 input(type="hidden" name="id" value=bici.id)
