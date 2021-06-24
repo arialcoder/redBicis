@@ -9,9 +9,9 @@ L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_toke
     accessToken: 'pk.eyJ1IjoiZXZlY29yZSIsImEiOiJja3BpYnY5eWYwMGluMm9wYXlubnEwZTY3In0.c-tzTlqGz2WkrU6Giq1gIw'
 }).addTo(map);
 
-// L.marker([51.495161, -0.077402]).addTo(map);
-// L.marker([51.49492, -0.079205]).addTo(map);
-// L.marker([51.49794, -0.082423]).addTo(map);
+ L.marker([51.495161, -0.077402]).addTo(map);
+ L.marker([51.49492, -0.079205]).addTo(map);
+ L.marker([51.49794, -0.082423]).addTo(map);
 
 $.ajax({
     dataType: "json",

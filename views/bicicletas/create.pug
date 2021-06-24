@@ -14,9 +14,9 @@ block content
     .col-6.mx-auto
       form(action='/bicicletas/create' method='post')
         .input-group.mb-3
-          label.col-sm-2.col-form-label(for='id') ID:
+          label.col-sm-2.col-form-label(for='code') Code:
           .col-sm-6
-            input#id.form-control(type='text' name='id')
+            input#code.form-control(type='text' name='code')
         .input-group.mb-3
           label.col-sm-2.col-form-label(for='color') Color
           .col-sm-6
@@ -26,11 +26,11 @@ block content
           .col-sm-6
             input#modelo.form-control(type='text' name='modelo')
         .input-group.mb-3
-          label.col-sm-2.col-form-label(for='lat') Latitud
+          label.col-sm-2.col-form-label(for='long')  Longitud
           .col-sm-6
             input#lat.form-control(type='text' name='lat')
         .input-group.mb-3
-          label.col-sm-2.col-form-label(for='lng') Longitud
+          label.col-sm-2.col-form-label(for='lat') Latitud
           .col-sm-6
             input#lng.form-control(type='text' name='lng')
         .input-group.mb-3

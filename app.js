@@ -1,3 +1,4 @@
+require(‘newrelic’);
 require('dotenv').config();
 var createError = require('http-errors');
 var express = require('express');
@@ -34,8 +35,6 @@ if(process.env.NODE_ENV === 'development' ) {
 const jwt = require('jsonwebtoken');
 //add passport
 const passport = require('./config/passport');
-
-
 
 //MONGOOSE
 var mongoose = require('mongoose');
@@ -178,7 +177,7 @@ app.get('/callback',
 app.use('/', indexRouter);
 //app.use('/users', usersRouter);
 
-app.use('/bicicletas', bicicletasRouter);
+//API
 app.use('/api/bicicletas', validarUsuario, bicicletasAPIRouter);
 app.use('/api/usuarios', usuariosAPIRouter);
 

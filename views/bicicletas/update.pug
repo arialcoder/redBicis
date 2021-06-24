@@ -1,6 +1,6 @@
 extends ../layout
 
-block content
+block content 
  div.container.mt-5
   a.btn.btn-success(href='/bicicletas') Volver
 
@@ -13,21 +13,22 @@ block content
    .container
     .row
      .col-6.mx-auto
-      form(action=`/bicicletas/${bici.id}/update` method='POST')
-      .input-group.mb-3
-        label.col-sm-2.col-form-label(for='code') ID:
-        input#id.form-control(type='text' name='code' value=bici.id disabled)
-      .input-group.mb-3
-        label.col-sm-2.col-form-label(for='color') Color:
+
+     form(action=`/bicicletas/${bici.code}/update` method='post')
+        label.col-sm-2.col-form-label(for='code') Code: 
+        input#code.form-control(type='text' name='code' value=bici.code)
+        br
+        label(for='color') Color: 
         input#color.form-control(type='text' name='color' value=bici.color)
-      .input-group.mb-3
-        label.col-sm-2.col-form-label(for='modelo') Modelo:
+        br
+        label(for='modelo') Modelo: 
         input#modelo.form-control(type='text' name='modelo' value=bici.modelo)
-      .input-group.mb-3
-        label.col-sm-2.col-form-label(for='lat') Latitud:
-        input#lat.form-control(type='text' name='lat' value=bici.ubicacion[0])
-      .input-group.mb-3
-        label.col-sm-2.col-form-label(for='lng') Longitud:
-        input#lng.form-control(type='text' name='lng' value=bici.ubicacion[1])
-      .input-group.mb-3        
-        input.btn(type='submit' value='OK' class="btn btn-primary")
+        br
+        label(for='lat') Longitud: 
+        input#lat.form-control(type='text' name='lng' value=bici.ubicacion[0])
+        br
+        label(for='lng')  Latitud:
+        input#lng.form-control(type='text' name='lat' value=bici.ubicacion[1])
+        br
+        br
+        input#ok(type='submit' value='OK' class="btn btn-primary")

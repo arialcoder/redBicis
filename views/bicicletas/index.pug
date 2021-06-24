@@ -24,10 +24,10 @@ block content
             td= bici.modelo
             td= bici.ubicacion
             td
-              a(href="bicicletas/" + bici.id +"/update" class="btn btn-outline-success") editar
+              a(href="bicicletas/" + bici.code +"/update" class="btn btn-outline-success") editar
             td
-              form.inline(method="post" action="bicicletas/"+ bici.id + "/delete")
-                input(type="hidden" name="id" value=bici.id)
+              form.inline(method="post" action="bicicletas/"+ bici.code + "/delete")
+                input(type="hidden" name='code' value=bici.code)
                 button.link-button(type="submit" name="submit_param" value="submit_value" class="btn btn-danger") 
                   = "Eliminar"
                 
