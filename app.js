@@ -1,4 +1,4 @@
-require(‘newrelic’);
+//require(‘newrelic’); lo deshabilito porque no tengo targeta para probarlo.
 require('dotenv').config();
 var createError = require('http-errors');
 var express = require('express');
